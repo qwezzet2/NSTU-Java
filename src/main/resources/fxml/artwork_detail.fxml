@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<?import javafx.scene.effect.DropShadow?>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="client.ArtworkDetailController"
+            style="-fx-background-color: #f5f7fa;">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+            <StackPane prefHeight="400" prefWidth="400">
+                <ImageView fx:id="detailImageView" fitHeight="400" fitWidth="400" preserveRatio="true">
+                    <effect>
+                        <DropShadow radius="10" color="rgba(0,0,0,0.2)"/>
+                    </effect>
+                </ImageView>
+            </StackPane>
+
+            <VBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 10;">
+                <Label fx:id="titleLabel" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+                <Label fx:id="authorLabel" style="-fx-font-size: 16;"/>
+                <Label fx:id="typeLabel" style="-fx-font-size: 16;"/>
+                <Label fx:id="yearLabel" style="-fx-font-size: 16;"/>
+                <Label fx:id="userTypeLabel" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+            </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 15; -fx-background-color: #f8f9fa;">
+            <Button text="Закрыть" onAction="#handleClose"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

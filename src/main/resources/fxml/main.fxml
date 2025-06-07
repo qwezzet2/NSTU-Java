@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="800" prefWidth="1200" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ArtworkController">
+    <top>
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: linear-gradient(to right, #4b6cb7, #182848); -fx-padding: 15;">
+            <Label fx:id="refreshStatusLabel" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Обновление каждые 5 сек" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="onlineUsersLabel" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Сейчас на сервере: (0)" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox style="-fx-padding: 20; -fx-spacing: 10;" VBox.vgrow="ALWAYS">
+            <TableView fx:id="table" prefHeight="350" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8;" VBox.vgrow="ALWAYS">
+                <effect>
+                    <DropShadow color="rgba(0,0,0,0.08)" radius="10" />
+                </effect>
+                <columns>
+                    <TableColumn fx:id="colId" maxWidth="80" minWidth="50" prefWidth="60" style="-fx-alignment: CENTER;" text="ID" />
+                    <TableColumn fx:id="colTitle" minWidth="150" prefWidth="250" style="-fx-alignment: CENTER-LEFT;" text="Название" />
+                    <TableColumn fx:id="colAuthor" minWidth="150" prefWidth="200" style="-fx-alignment: CENTER-LEFT;" text="Автор" />
+                    <TableColumn fx:id="colType" minWidth="100" prefWidth="150" style="-fx-alignment: CENTER-LEFT;" text="Тип" />
+                    <TableColumn fx:id="colYear" minWidth="60" prefWidth="80" style="-fx-alignment: CENTER;" text="Год" />
+                    <TableColumn fx:id="colImage" minWidth="100" prefWidth="120" style="-fx-alignment: CENTER;" text="Изображение" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+            <Label fx:id="rowCountLabel" prefHeight="22.0" prefWidth="72.0" style="-fx-text-fill: #666; -fx-font-size: 12; -fx-padding: 5 0 0 5;" text="Записей: 0" />
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox style="-fx-background-color: white; -fx-padding: 10; -fx-spacing: 10;">
+            <effect>
+                <DropShadow color="rgba(0,0,0,0.05)" offsetY="-5" />
+            </effect>
+            <HBox alignment="CENTER" prefHeight="349.0" prefWidth="1180.0" spacing="30">
+                <VBox alignment="CENTER_LEFT" prefHeight="349.0" prefWidth="411.0" spacing="10" style="-fx-padding: 10; -fx-background-color: #f8f9fa; -fx-background-radius: 10;">
+                    <effect>
+                        <DropShadow color="rgba(0,0,0,0.05)" radius="5" />
+                    </effect>
+                    <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Добавить/редактировать:" />
+
+                    <GridPane hgap="15" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="NEVER" prefWidth="100" />
+                            <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+
+                        <Label style="-fx-font-size: 13; -fx-text-fill: #555;" text="Название:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="titleField" promptText="Введите название" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ddd; -fx-padding: 6 10; -fx-font-size: 13;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label style="-fx-font-size: 13; -fx-text-fill: #555;" text="Автор:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="authorField" promptText="Введите автора" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ddd; -fx-padding: 6 10; -fx-font-size: 13;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label style="-fx-font-size: 13; -fx-text-fill: #555;" text="Тип:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="typeField" promptText="Введите тип" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ddd; -fx-padding: 6 10; -fx-font-size: 13;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                        <Label style="-fx-font-size: 13; -fx-text-fill: #555;" text="Год:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <TextField fx:id="yearField" promptText="Введите год" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #ddd; -fx-padding: 6 10; -fx-font-size: 13;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <rowConstraints>
+                            <RowConstraints prefHeight="30" />
+                            <RowConstraints prefHeight="30" />
+                            <RowConstraints prefHeight="30" />
+                            <RowConstraints prefHeight="30" />
+                        </rowConstraints>
+                    </GridPane>
+   
+                    <Button onAction="#selectImage" prefHeight="35.0" prefWidth="214.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 8 15; -fx-background-radius: 5; -fx-cursor: hand;" text="Выбрать изображение">
+                        <effect>
+                            <DropShadow color="rgba(0,0,0,0.1)" radius="5" />
+                        </effect>
+                    </Button>
+                </VBox>
+
+                <VBox alignment="CENTER" prefHeight="392.0" prefWidth="182.0" spacing="15" style="-fx-padding: 10;">
+                    <Button onAction="#addArtwork" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 120; -fx-font-size: 13; -fx-padding: 10 20; -fx-background-radius: 5; -fx-cursor: hand;" text="Добавить">
+                        <effect>
+                            <DropShadow color="rgba(0,0,0,0.1)" radius="5" />
+                        </effect>
+                    </Button>
+                    <Button fx:id="editButton" onAction="#editArtwork" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 120; -fx-font-size: 13; -fx-padding: 10 20; -fx-background-radius: 5; -fx-cursor: hand;" text="Изменить">
+                        <effect>
+                            <DropShadow color="rgba(0,0,0,0.1)" radius="5" />
+                        </effect>
+                    </Button>
+                    <Button fx:id="deleteButton" onAction="#deleteArtwork" prefHeight="47.0" prefWidth="130.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 120; -fx-font-size: 13; -fx-padding: 10 20; -fx-background-radius: 5; -fx-cursor: hand;" text="Удалить">
+                        <effect>
+                            <DropShadow color="rgba(0,0,0,0.1)" radius="5" />
+                        </effect>
+                    </Button>
+                </VBox>
+                 <ImageView fx:id="imagePreview" fitHeight="196.0" fitWidth="299.0">
+                     <effect>
+                         <DropShadow color="rgba(0,0,0,0.1)" radius="10" />
+                     </effect>
+                 </ImageView>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
