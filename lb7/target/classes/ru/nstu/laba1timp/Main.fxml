@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Rectangle?> <!-- Этот импорт не используется, можно удалить, если Rectangle не добавляется программно -->
+
+<GridPane fx:id="pane" alignment="CENTER" focusTraversable="true" onKeyPressed="#keyPressed"
+          prefHeight="680.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="ru.nstu.laba1timp.controllers.Controller">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <children>
+    <Pane fx:id="leftPane" prefHeight="680.0" prefWidth="210.0">
+      <children>
+        <Label fx:id="labelTextTIMER" alignment="CENTER" layoutX="10" layoutY="640" text="Таймер:"> <font> <Font name="System Bold" size="22.0" /> </font> </Label>
+        <Label fx:id="labelTimer" alignment="CENTER" layoutX="110.0" layoutY="645" text="00:00" textFill="#000000"> <font> <Font name="Arial Bold" size="22.0" /> </font> </Label>
+        <Button fx:id="btnStart" text="Старт (B)" onAction="#clickStart" layoutX="10" layoutY="40" prefHeight="50" prefWidth="90"> <font> <Font name="Arial Bold" size="15.0" /> </font> </Button>
+        <Button fx:id="btnStop" text="Стоп (E)" onAction="#clickStop" layoutX="110" layoutY="40" prefHeight="50" prefWidth="90"> <font> <Font name="Arial Bold" size="15.0" /> </font> </Button>
+        <CheckBox fx:id="btnShowInfo" text="Показывать информацию" onAction="#clickInfo" layoutX="10" layoutY="100" prefHeight="30" prefWidth="200"> <font> <Font name="Arial" size="13.0" /> </font> </CheckBox>
+        <fx:define> <ToggleGroup fx:id="timerGroup"/> </fx:define>
+        <RadioButton fx:id="btnShowTime" toggleGroup="$timerGroup" text="Показать время (T)" onAction="#clickTimeSwitch" layoutX="10" layoutY="130" prefHeight="30" prefWidth="200"> <font> <Font name="Arial" size="13.0" /> </font> </RadioButton>
+        <RadioButton fx:id="btnHideTime" toggleGroup="$timerGroup" text="Скрыть время (T)" onAction="#clickTimeSwitch" layoutX="10" layoutY="150" prefHeight="30" prefWidth="200"> <font> <Font name="Arial" size="13.0" /> </font> </RadioButton>
+        <fx:define> <ToggleGroup fx:id="soundGroup"/> </fx:define>
+        <RadioButton fx:id="btnEnableSound" toggleGroup="$soundGroup" text="Включить звук" onAction="#clickSoundSwitch" layoutX="10" layoutY="180" prefHeight="30" prefWidth="200"> <font> <Font name="Arial" size="13.0" /> </font> </RadioButton>
+        <RadioButton fx:id="btnDisableSound" toggleGroup="$soundGroup" text="Выключить звук" onAction="#clickSoundSwitch" layoutX="10" layoutY="200" prefHeight="30" prefWidth="200"> <font> <Font name="Arial" size="13.0" /> </font> </RadioButton>
+        <Label layoutX="10" layoutY="240" text="Параметры разработчиков"> <font> <Font name="System Bold" size="14.0" /> </font> </Label>
+        <Label layoutX="5" layoutY="265" text="Период (N1):"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <TextField fx:id="fieldN1" layoutX="150" layoutY="260" prefWidth="35" text="1"/>
+        <Label layoutX="5" layoutY="285" text="Вероятность (P1):"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <ComboBox fx:id="boxP1" layoutX="125" layoutY="280" prefWidth="60.0" />
+        <Label layoutX="5" layoutY="305" text="Время жизни:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <TextField fx:id="fieldLifeTimeDev" layoutX="150" layoutY="300" prefWidth="35" text="8"/>
+        <Label layoutX="10" layoutY="330" text="Параметры менеджеров"> <font> <Font name="System Bold" size="14.0" /> </font> </Label>
+        <Label layoutX="5" layoutY="355" text="Период (N2):"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <TextField fx:id="fieldN2" layoutX="150" layoutY="350" prefWidth="35" text="2"/>
+        <Label layoutX="5" layoutY="375" text="Вероятность (P2):"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <ComboBox fx:id="boxP2" layoutX="125" layoutY="370" prefWidth="60.0" />
+        <Label layoutX="5" layoutY="395" text="Время жизни:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <TextField fx:id="fieldLifeTimeMan" layoutX="150" layoutY="390" prefWidth="35" text="10"/>
+        <Label layoutX="5" layoutY="415" text="Макс. % менеджеров:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <TextField fx:id="fieldMaxManagerPercent" layoutX="150" layoutY="410" prefWidth="35" text="40"/>
+        <Button fx:id="btnCurrentObjects" text="Текущие объекты" onAction="#clickCurrentObjects" layoutX="10" layoutY="450" prefHeight="50" prefWidth="180"> <font> <Font name="Arial Bold" size="15.0" /> </font> </Button>
+        <Label layoutX="10" layoutY="510" text="Интеллект объектов"> <font> <Font name="System Bold" size="14.0" /> </font> </Label>
+        <Label layoutX="5" layoutY="535" text="Разработчики:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <Button fx:id="btnDevIntellect" text="ON" onAction="#clickDevIntellect" layoutX="125" layoutY="530" prefWidth="60"/>
+        <Label layoutX="5" layoutY="555" text="Менеджеры:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <Button fx:id="btnManIntellect" text="ON" onAction="#clickManIntellect" layoutX="125" layoutY="550" prefWidth="60"/>
+        <Label layoutX="10" layoutY="580" text="Приоритеты потоков"> <font> <Font name="System Bold" size="14.0" /> </font> </Label>
+        <Label layoutX="5" layoutY="605" text="Разработчики:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <ComboBox fx:id="boxDevPriority" layoutX="125" layoutY="600" prefWidth="60"/>
+        <Label layoutX="5" layoutY="625" text="Менеджеры:"> <font> <Font name="System" size="13.0" /> </font> </Label>
+        <ComboBox fx:id="boxManPriority" layoutX="125" layoutY="620" prefWidth="60"/>
+
+        <MenuBar layoutX="0" layoutY="0" prefWidth="210.0">
+          <menus>
+            <Menu text="Меню">
+              <items>
+                <MenuItem fx:id="menuStart" text="Старт (B)" onAction="#clickStart"/>
+                <MenuItem fx:id="menuStop" text="Стоп (E)" onAction="#clickStop"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuSave" text="Сохранить (в файл)..." onAction="#clickSave"/>
+                <MenuItem fx:id="menuLoad" text="Загрузить (из файла)..." onAction="#clickLoad"/>
+                <SeparatorMenuItem/>
+                <!-- <<< НАЧАЛО ИЗМЕНЕНИЙ: Пункт меню для управления сохранениями БД >>> -->
+                <MenuItem fx:id="menuManageDBSaves" text="Управление сохранениями БД..." onAction="#openManageDBSavesWindow"/>
+                <!-- <<< КОНЕЦ ИЗМЕНЕНИЙ >>> -->
+                <SeparatorMenuItem/>
+                <CheckMenuItem fx:id="menuShowInfo" text="Показывать информацию" onAction="#menuClickInfo"/>
+                <SeparatorMenuItem/>
+                <fx:define> <ToggleGroup fx:id="menuTimerGroup"/> </fx:define>
+                <RadioMenuItem fx:id="menuShowTime" text="Показать время (T)" onAction="#menuClickTimeSwitch" toggleGroup="$menuTimerGroup"/>
+                <RadioMenuItem fx:id="menuHideTime" text="Скрыть время (T)" onAction="#menuClickTimeSwitch" toggleGroup="$menuTimerGroup"/>
+                <SeparatorMenuItem/>
+                <fx:define> <ToggleGroup fx:id="menuSoundGroup"/> </fx:define>
+                <RadioMenuItem fx:id="menuEnableSound" text="Включить звук" onAction="#menuClickSoundSwitch" toggleGroup="$menuSoundGroup"/>
+                <RadioMenuItem fx:id="menuDisableSound" text="Выключить звук" onAction="#menuClickSoundSwitch" toggleGroup="$menuSoundGroup"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuOpenConsole" text="Открыть консоль..." onAction="#openConsoleWindow"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuExit" text="Выход" onAction="#menuClickExit"/>
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+      </children>
+    </Pane>
+    <Pane fx:id="visualizationPane" focusTraversable="true" onKeyPressed="#keyPressed" prefHeight="680.0" prefWidth="1090.0"
+          style="-fx-background-image: url('background.jpg'); -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;" GridPane.columnIndex="1">
+
+    </Pane>
+  </children>
+</GridPane>
