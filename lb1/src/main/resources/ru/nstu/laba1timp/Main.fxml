@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<Pane fx:id="visualizationPane" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nstu.laba1timp.Controller" onKeyPressed="#keyPressed" style="-fx-background-image: url('background.jpg'); -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;">
+  <!-- Таймер -->
+  <Label fx:id="labelTimer" layoutX="10" layoutY="10" text="00:00" textFill="black">
+    <font>
+      <Font name="Comic Sans MS" size="20" />
+    </font>
+  </Label>
+
+  <!-- Статистика -->
+  <TextFlow fx:id="statisticTextFlow" layoutX="10" layoutY="50" visible="false">
+    <!-- Здесь будут добавляться текстовые элементы -->
+  </TextFlow>
+
+  <!-- Обозначения клавиш -->
+  <Label fx:id="keyBindingsLabel" layoutX="10" layoutY="100" textFill="black" visible="false">
+    <font>
+      <Font name="Comic Sans MS" size="14" />
+    </font>
+  </Label>
+
+  <!-- Фотография -->
+  <ImageView fx:id="resultImageView" visible="false" fitWidth="600" fitHeight="400" preserveRatio="true" />
+</Pane>
